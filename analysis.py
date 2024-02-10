@@ -1,3 +1,5 @@
+import pandas as pd 
+
 # Adjusting the code to reflect the specific values provided in the dissertation
 # Since the exact raw data for each hypothesis isn't provided, we'll use the reported mean true effect sizes
 # and significance levels directly from the summary provided earlier.
@@ -45,8 +47,21 @@ results_df_direct = pd.DataFrame(results_direct)
 # Generate a README.md content with results and comments
 readme_content = """
 # Dissertation Statistical Analysis Results
+## "How To Motivate Remote Employees: A Self-Determination Theory
+Perspective"
 
 This document summarizes the statistical analysis results from the dissertation.
+
+## What is Meta-Analysis?
+Meta-analysis is a statistical technique used to combine the findings from independent studies to identify patterns, discrepancies, and overall effects across numerous research studies. It goes beyond mere literature review by conducting secondary statistical analysis on the outcomes of relevant studies.
+## Why Use Meta-Analysis?
+The author chose meta-analysis to systematically review and synthesize existing research on how autonomy impacts remote employees' motivation. This method allows for a comprehensive examination of the collected data, identifying general consensus points, conflicts, and the reliability of the compared studies. It's particularly suited to the dissertation's goal due to the abundance of existing research on Self-Determination Theory (SDT) and its application to remote work environments.
+## The Selected Approach
+Among various meta-analysis methods, the dissertation utilizes the Hedges and colleagues method, which offers both fixed- and random-effects models. This approach was chosen for its ability to handle the nuances of the studies analyzed, especially considering the potential for diverse outcomes in studies related to autonomy and remote work.
+## Statistical Implementation
+*Fixed-Effects Meta-Analysis*: The method begins by converting effect sizes into a standard normal metric via Fisher’s r-to-Z transformation, then calculating a weighted average of these transformed scores.
+*Calculating Homogeneity of Effect Sizes*: It involves assessing the consistency among study outcomes to ensure they are evaluating the same effect. Homogeneity tests such as Cochrane’s Q statistic and I^2 are employed to examine between-study variance.
+*Random-Effects Meta-Analysis*: This part calculates the mean effect size, incorporating both within-study and between-study variances, to address the heterogeneity among studies.
 
 ## Hypotheses and Results
 
@@ -66,7 +81,7 @@ readme_content += """
 """
 
 # Write README content to a file
-readme_file_path = '/mnt/data/README_dissertation_results.md'
+readme_file_path = 'README.md'
 with open(readme_file_path, 'w') as file:
     file.write(readme_content)
 
