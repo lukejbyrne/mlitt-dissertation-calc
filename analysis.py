@@ -2,9 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Adjusting the code to reflect the specific values provided in the dissertation
-# Since the exact raw data for each hypothesis isn't provided, we'll use the reported mean true effect sizes
-# and significance levels directly from the summary provided earlier.
+# Since the exact raw data for each hypothesis isn't provided, we'll use the reported mean true effect sizes and significance levels directly from the summary provided earlier.
 
 # Hypothetical calculations will be replaced with direct inputs based on dissertation findings.
 
@@ -50,9 +48,7 @@ results_df_direct = pd.DataFrame(results_direct)
 # Set the aesthetic style of the plots
 sns.set_style("whitegrid")
 
-# Assuming results_df_direct is already defined and includes the necessary data
-
-# You may want to adjust 'Mean True Effect Size' for visualization purposes, 
+# One may want to adjust 'Mean True Effect Size' for visualization purposes, 
 # e.g., taking the absolute value if you want to visualize the magnitude regardless of direction
 # results_df_direct['Absolute Mean Effect Size'] = results_df_direct['Mean True Effect Size'].abs()
 
@@ -79,7 +75,6 @@ for index, row in results_df_direct.iterrows():
         ha="center"
     )
 
-plt.tight_layout()  # Adjusts plot to ensure everything fits without overlapping
 plt.tight_layout()
 plt.savefig("Results.png")
 
