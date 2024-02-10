@@ -1,4 +1,6 @@
 import pandas as pd 
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Adjusting the code to reflect the specific values provided in the dissertation
 # Since the exact raw data for each hypothesis isn't provided, we'll use the reported mean true effect sizes
@@ -44,6 +46,43 @@ results_direct = {
 # Convert the adjusted results into a DataFrame for presentation
 results_df_direct = pd.DataFrame(results_direct)
 
+
+# Set the aesthetic style of the plots
+sns.set_style("whitegrid")
+
+# Assuming results_df_direct is already defined and includes the necessary data
+
+# You may want to adjust 'Mean True Effect Size' for visualization purposes, 
+# e.g., taking the absolute value if you want to visualize the magnitude regardless of direction
+# results_df_direct['Absolute Mean Effect Size'] = results_df_direct['Mean True Effect Size'].abs()
+
+# Create a bar plot
+plt.figure(figsize=(10, 6))
+barplot = sns.barplot(
+    x='Mean True Effect Size', 
+    y='Hypothesis', 
+    data=results_df_direct,
+    palette='coolwarm'  # This palette shows a good contrast for positive and negative values
+)
+
+plt.title('Mean True Effect Sizes by Hypothesis')
+plt.xlabel('Mean True Effect Size')
+plt.ylabel('Hypothesis')
+
+# Optional: Adding the significance level as text on the bars
+for index, row in results_df_direct.iterrows():
+    barplot.text(
+        row['Mean True Effect Size'], 
+        index, 
+        f"{row['Significance Level']}, I²={row['Heterogeneity (I^2)']}", 
+        color='black',
+        ha="center"
+    )
+
+plt.tight_layout()  # Adjusts plot to ensure everything fits without overlapping
+plt.tight_layout()
+plt.savefig("Results.png")
+
 # Generate a README.md content with results and comments
 readme_content = """
 # Dissertation Statistical Analysis Results
@@ -73,6 +112,9 @@ for index, row in results_df_direct.iterrows():
     readme_content += f"| {row['Hypothesis']} | {row['Mean True Effect Size']} | {row['Significance Level']} | {row['Heterogeneity (I^2)']} |\n"
 
 readme_content += """
+
+![Image Alt text](Results.png "Results")
+
 ## Comments
 
 - The mean true effect sizes indicate the magnitude of the effect autonomy has on various outcomes related to remote work.
@@ -84,5 +126,3 @@ readme_content += """
 readme_file_path = 'README.md'
 with open(readme_file_path, 'w') as file:
     file.write(readme_content)
-
-readme_file_path
